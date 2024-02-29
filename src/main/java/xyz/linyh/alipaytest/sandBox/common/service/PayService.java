@@ -1,16 +1,19 @@
-package xyz.linyh.alipaytest.sandBox.common;
+package xyz.linyh.alipaytest.sandBox.common.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.response.AlipayTradePagePayResponse;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Main {
-    public static void main(String[] args) throws Exception {
+@Component
+public class PayService {
+
+    public String createOrder() throws Exception {
         String APP_ID = "9021000133635987";
         String APP_PRIVATE_KEY = getPrivateKey();
         String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw62SLpc1e4QmdV3GthkfElT9jcF8sgyWaRQYfLRZKj2XcCZkYS+hKSuDj1aTAsgUFpd3plWtFTbGqvcl8wYmgpVKzMQBQ5b0ptRLXuOR0zcPxtJvC6h1tmp12N2bkA4gzy5UI5ois4eX4DGTjMq7G9AIk8me1QYPic/ivcFzuW77cWdWVdrLCvn8nk2KRxr+BdbIlk+m2k5W4wDBeogrhRZlT0cJZ21p5dz4EPqoaDViEiO9oiO/w2bHN6Jz2VI1dOjGoTzSPcJASZ+Gpi+9TCHkKuflY7pInCVfLAMEBujnm7N7Ib/kENt1ytgnljcd6BFIpln3ZEAr5OGZIRW1ZwIDAQAB";
@@ -61,11 +64,10 @@ public class Main {
         } else {
             System.out.println("调用失败");
         }
-
+        return pageRedirectionData;
     }
 
-
-    private static String getPrivateKey() {
+    private String getPrivateKey() {
         String privateKey = "";
         try (BufferedReader br = new BufferedReader(new FileReader("D:\\alipay\\sandbox\\privateKey.txt"))) {
             privateKey = br.readLine();
@@ -77,4 +79,5 @@ public class Main {
 
         return privateKey;
     }
+
 }

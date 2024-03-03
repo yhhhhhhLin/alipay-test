@@ -6,14 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <title>创建订单</title>
+    <title>商品购买</title>
 </head>
 <body>
-<button onclick="createProduct()">购买商品</button>
+<button onclick="createProduct(1)">9.9秒杀商品</button>
+<button onclick="createProduct(2)">19.9秒杀商品</button>
+<button onclick="createProduct(3)">29.9秒杀商品</button>
+<button onclick="createProduct(4)">39.9秒杀商品</button>
 
 <script>
-    function createProduct() {
-        axios.get('http://localhost:7001/order/create')
+    function createProduct(goodsId) {
+        axios.get('http://localhost:7001/test/order/create?goodsId='+goodsId)
             .then((resp) => {
                 console.log(resp)
             })

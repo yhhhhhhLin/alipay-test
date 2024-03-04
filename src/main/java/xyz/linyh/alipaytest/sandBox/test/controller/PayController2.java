@@ -26,8 +26,6 @@ public class PayController2 {
 
     @GetMapping("/order/pay")
     public String createPay(@RequestParam String orderId) {
-
-
         String result = null;
 
         try {

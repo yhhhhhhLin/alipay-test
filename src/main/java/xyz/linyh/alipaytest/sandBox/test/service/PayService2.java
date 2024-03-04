@@ -13,7 +13,7 @@ public class PayService2 {
     @Autowired
     private AlipayClient myAliPayClient;
 
-    public String createPay(String userId,String goodsId) throws Exception {
+    public String createPay(String userId,String orderId) throws Exception {
 
         //设置请求参数
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
@@ -22,13 +22,13 @@ public class PayService2 {
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
         //商户订单号，商户网站订单系统中唯一订单号，必填
-        String out_trade_no = new String("9920182124".getBytes("ISO-8859-1"),"UTF-8");
-        //付款金额，必填
-        String total_amount = new String("9.9".getBytes("ISO-8859-1"),"UTF-8");
+        String out_trade_no = orderId;
+        //付款金额，必填 去数据库查询对应订单信息 模拟
+        String total_amount = "9.9";
         //订单名称，必填
-        String subject = new String("测试订单2".getBytes("ISO-8859-1"),"UTF-8");
+        String subject = "模拟订单信息名称";
         //商品描述，可空
-        String body = new String("测试商品描述2".getBytes("ISO-8859-1"),"UTF-8");
+        String body = "模拟订单信息描述";
 
         alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                 + "\"total_amount\":\""+ total_amount +"\","
